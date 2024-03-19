@@ -177,6 +177,19 @@
                         <td>{{ $order->id }}</td>
                         <td>{{ $order->sku }}</td>
                         <td>{{ $order->name }}</td>
+                        <td>
+                                            <a href="#" class="btn btn-sm btn-danger" onclick="
+                                                    event.preventDefault();
+                                                    if (confirm('Do you want to remove this?')) {
+                                                    document.getElementById('delete-row-{{ $order->id }}').submit();
+                                                    }">
+                                                delete
+                                            </a>
+                                            <form id="delete-row-{{ $order->id }}" action="{{ route('orders.destroy', ['id' => $order->id]) }}" method="POST">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                @csrf
+                                            </form>
+                                            </td>
                       </tr>
                     @empty
                       <tr>

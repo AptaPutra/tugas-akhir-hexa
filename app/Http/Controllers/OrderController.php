@@ -37,7 +37,16 @@ class OrderController extends Controller
          }
      }
 
-
+     public function destroy(string $id): RedirectResponse
+     {
+        $orders = Order::findOrFail($id);
+ 
+         if ($orders->delete()) {
+             return redirect(route('order'))->with('success', 'Deleted!');
+         }
+ 
+         return redirect(route('order'))->with('error', 'Sorry, unable to delete this!');
+     }
  
     
      

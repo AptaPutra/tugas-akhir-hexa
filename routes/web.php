@@ -42,7 +42,7 @@ Route::middleware([
 
     Route::post('createorder', [OrderController::class, 'order'])->name('createorder');
     
-    
+    Route::delete('orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
 
     Route::get('/ordercreate', function () {
         return view('OrderFolder.ordercreate');
