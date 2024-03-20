@@ -12,10 +12,10 @@ return new class extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->id();
-            $table->string('sku')->index();;
             $table->string('name');
-            // $table->decimal('price', 15, 2)->nullable();
-            // $table->integer('stock')->default(0);
+            $table->string('vehicle');
+            $table->string('merk');
+            $table->enum('option', ['ban bocor', 'isi oli', 'cas aki','ganti kampas',])->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order');
+        Schema::dropIfExists('orders');
     }
 };

@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - Order</title>
+        <title>Dashboard - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../assets/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -33,14 +33,18 @@
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
+
+                        <!-- <a class="nav-link" href="{{ route('logout') }}"  class="far fa-user">Logout</a>  -->
+
                         <li> <form method="POST" action="{{ route('logout') }}" x-data> @csrf
                             <!-- <a class=" ">Logout</a> -->
                             <button class="dropdown-item text-danger" type="submit">Logout</button>
                         </form>
                         </li>
+
                     </ul>
                 </li>
-            </ul>a
+            </ul>
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -49,12 +53,10 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
 
-                        
-                            <a class="nav-link" href="dashboard_user">
-                                <div class="sb-nav-link-icon"href="{{ route('dashboard_user') }}"  class="far fa-user"></i> Dashboard </href=>
+                            <a class="nav-link" href="dashboard">
+                                <div class="sb-nav-link-icon"href="{{ route('dashboard') }}"  class="far fa-user"></i> Dashboard </href=>
                                 
                             </a>
-
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                
@@ -65,10 +67,11 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
+                                    
+
+                                <a class="nav-link" href="{{ route('order') }}"  class="far fa-user">Ordecreater</a> 
 
 
-                                <a class="nav-link" href="{{ route('order') }}"  class="far fa-user"></i> Order </href=>
-                                
 
                                     <a class="nav-link" href="layout-sidenav-light.html">History</a>
                                 </nav>
@@ -109,11 +112,11 @@
                                     </div>
                                 </nav>
                             </div>
-                            <!-- <div class="sb-sidenav-menu-heading">Addons</div>
+                            <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Charts
-                            </a> -->
+                            </a>
                             <a class="nav-link" href="tables.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
@@ -126,92 +129,90 @@
                     </div> -->
                 </nav>
             </div>
-
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h2 class="mt-4">Order</h2>
-                        <div id="app">
-                            <div class="main-wrapper">
-                                <div class="main-content">
-                                <div class="container">
+                        <h1 class="mt-4">Dashboard</h1>
+                        <p>
+                                        
+                                        <a class="btn btn-primary" href="{{ route('ordercreate') }}">order</a>
+                                        
+                                    </p>
+                        
 
-
-                                    <form method="POST" action="{{ route('createorder') }}" enctype="multipart/form-data">
-                                    @csrf
-                                    <!-- @method('PUT') -->
-                                    <div class="card mt-5">
-                                        <div class="card-header">
-                                        <h3>New Product</h3>
-                                        </div>
-                                        <div class="card-body">
-                                            @if ($errors->any())
-                                            <div class="alert alert-danger">
-                                                <div class="alert-title"><h4>Whoops!</h4></div>
-                                                There are some problems with your input.
-                                                <ul>
-                                                    @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div> 
-                                            @endif
-
-                                            @if (session('success'))
-                                            <div class="alert alert-success">{{ session('success') }}</div>
-                                            @endif
-
-                                            @if (session('error'))
-                                            <div class="alert alert-danger">{{ session('error') }}</div>
-                                            @endif
-                                            <div class="mb-3">
-                                            <label class="form-label">Name</label>
-                                            <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="name">
-                                            </div>
-                                            <div class="mb-3">
-                                            <label class="form-label">Vehicle</label>
-                                            <input type="text" class="form-control" name="vehicle" value="{{ old('vehicle') }}"  placeholder="vehicle">
-                                            </div>
-                                            <div class="mb-3">
-                                            <label class="form-label">merk</label>
-                                            <input type="text" class="form-control" name="merk" value="{{ old('merk') }}"  placeholder="merk">
-                                            </div>
-
-
-             <div class="mb-4">
-              <label for="option" class="block text-start text-gray-700 text-sm font-bold mb-2">Jenis Kerusakan:</label>
-              <select wire:model="option" id="option" class="form-select rounded-md shadow-sm mt-1 block w-full" name="option" value="{{ old('option') }}"  placeholder="option">>
-                <option value="">Jenis Kerusakan</option>
-                <option value="ban bocor">ban bocor</option>
-                <option value="isi oli">isi oli</option>
-                <option value="cas aki">cas aki</option>
-                <option value="ganti kampas">ganti kampas</option>
-              </select>
-              @error('option')
-                <span class="text-red-500">{{ $message }}</span>
-              @enderror
-            </div>
-
-           
-                                        </div>
-                                        <div class="card-footer">
-                                        <button class="btn btn-primary" type="submit">order</a>
-                                        </div>
-                                    </div>
-                                    </form>
-
-                                </div>
-                                </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                DataTable Example
                             </div>
-                            </div>
-                           </main>
-                                    
-                                    
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                <div id="app">
+      
+          
+                @if (session('success'))
+                  <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                @if (session('error'))
+                  <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
+
+
+
+                
+
+                
+                <table class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                
+                      <th>name</th>
+                      <th>vehicle</th>
+                      <th>merk</th>
+                     
+                      <th>action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @forelse ($orders as $order)
+                      <tr>
                        
-                                   
-
-
-                               
+                        <td>{{ $order->name }}</td>
+                        <td>{{ $order->vehicle }}</td>
+                        <td>{{ $order->merk }}</td>
+                     
+                        
+                                        <td>    <a href="#" class="btn btn-sm btn-danger" onclick="
+                                                    event.preventDefault();
+                                                    if (confirm('Do you want to remove this?')) {
+                                                    document.getElementById('delete-row-{{ $order->id }}').submit();
+                                                    }">
+                                                delete
+                                            </a>
+                                            <form id="delete-row-{{ $order->id }}" action="{{ route('orders.destroy', ['id' => $order->id]) }}" method="POST">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                @csrf
+                                            </form>
+                                            </td>
+                      </tr>
+                    @empty
+                      <tr>
+                        <td colspan="8">
+                            No record found!
+                        </td>
+                      </tr>
+                    @endforelse
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+                                 
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -236,6 +237,6 @@
         <script src="assets/demo/chart-area-demo.js"></script>
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script> -->
+        <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>

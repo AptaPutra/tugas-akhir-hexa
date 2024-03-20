@@ -8,14 +8,15 @@ use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
 
 use App\Models\Order;
+use App\Models\merk;
 
 class OrderController extends Controller
 {
     public function index(): Response
     {
         $orders = Order::all();
-
         return response(view('OrderFolder.order', ['orders' => $orders]));
+        
     }
 
     public function create(): Response
@@ -27,13 +28,19 @@ class OrderController extends Controller
      {
          
          $params =  $request->validate([
-             'sku' => 'required|unique:order|max:255',
              'name' => 'required',
+             'vehicle' => 'required',
+             'merk' => 'required',
+             'option' => 'required',
+            
+            
             ]);
             // dd($params);
              if ($orders = Order::create($params)) {
      
                  return redirect('order')->with('success', 'Added!');
+
+                
          }
      }
 

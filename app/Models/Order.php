@@ -14,8 +14,12 @@ class Order extends Model
     protected $table = 'order';
     protected $fillable = [
 
-        'sku',
         'name',
+        'vehicle',
+        'merk',
+        'option',
+        
+       
     ];
 
   

@@ -166,19 +166,26 @@
                 <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
-                      <th>id</th>
-                      <th>sku</th>
+                
                       <th>name</th>
+                      <th>vehicle</th>
+                      <th>merk</th>
+                      <th>option</th>
+                     
+                      <th>action</th>
                     </tr>
                   </thead>
                   <tbody>
                     @forelse ($orders as $order)
                       <tr>
-                        <td>{{ $order->id }}</td>
-                        <td>{{ $order->sku }}</td>
+                       
                         <td>{{ $order->name }}</td>
-                        <td>
-                                            <a href="#" class="btn btn-sm btn-danger" onclick="
+                        <td>{{ $order->vehicle }}</td>
+                        <td>{{ $order->merk }}</td>
+                        <td>{{ $order->option }}</td>
+                     
+                        
+                                        <td>    <a href="#" class="btn btn-sm btn-danger" onclick="
                                                     event.preventDefault();
                                                     if (confirm('Do you want to remove this?')) {
                                                     document.getElementById('delete-row-{{ $order->id }}').submit();

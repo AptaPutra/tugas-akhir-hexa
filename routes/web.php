@@ -48,5 +48,9 @@ Route::middleware([
         return view('OrderFolder.ordercreate');
     })->name('ordercreate');
 
+    Route::get('/orderview', function () {
+        return view('OrderFolder.orderview');
+    })->name('orderview');
+
     
 });
