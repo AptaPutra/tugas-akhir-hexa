@@ -178,7 +178,7 @@
                                             </div>
 
 
-             <div class="mb-4">
+                                            <div class="mb-4">
               <label for="option" class="block text-start text-gray-700 text-sm font-bold mb-2">Jenis Kerusakan:</label>
               <select wire:model="option" id="option" class="form-select rounded-md shadow-sm mt-1 block w-full" name="option" value="{{ old('option') }}"  placeholder="option">>
                 <option value="">Jenis Kerusakan</option>
@@ -191,6 +191,9 @@
                 <span class="text-red-500">{{ $message }}</span>
               @enderror
             </div>
+
+
+
 
            
                                         </div>
