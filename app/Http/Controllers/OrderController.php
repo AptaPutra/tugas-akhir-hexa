@@ -19,6 +19,9 @@ class OrderController extends Controller
         
     }
 
+    
+
+
     public function create(): Response
     {
         return response(view('OrderFolder.ordercreate'));
@@ -38,7 +41,7 @@ class OrderController extends Controller
             // dd($params);
              if ($orders = Order::create($params)) {
      
-                 return redirect('order')->with('success', 'Added!');
+                 return redirect('ordercreate')->with('success', 'tunggu admin merespon, harap bersabar kak');
 
                 
          }

@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB User</title>
+        <title>Dashboard - SB User view</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../assets/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -99,13 +99,49 @@
                     </div> -->
                 </nav>
             </div>
-           
-                                
+            
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <center>
+                        <h1 class="mt-4">Tambah Order</h1>
+</center>
+<center>
+                        <p>
+                                        
+                                        <a class="btn btn-primary" href="{{ route('ordercreate') }}">order</a>
+                                        
+                                    </p>
+</center>
+
+                    
+          
+                @if (session('success'))
+                  <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                @if (session('error'))
+                  <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
+
+
+
+                
+
+                
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+                                 
+                                </table>
                             </div>
                         </div>
                     </div>
                 </main>
-
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">

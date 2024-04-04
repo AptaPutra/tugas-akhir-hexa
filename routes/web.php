@@ -44,13 +44,23 @@ Route::middleware([
     
     Route::delete('orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
 
+    
+
     Route::get('/ordercreate', function () {
         return view('OrderFolder.ordercreate');
     })->name('ordercreate');
 
-    Route::get('/orderview', function () {
-        return view('OrderFolder.orderview');
-    })->name('orderview');
+    Route::get('/history', function () {
+        return view('OrderFolder.history');
+    })->name('history');
+
+    Route::get('/show', function () {
+        return view('profile.show');
+    })->name('show');
+
+    Route::get('/userview', function () {
+        return view('OrderFolder.userview');
+    })->name('userview');
 
     
 });
